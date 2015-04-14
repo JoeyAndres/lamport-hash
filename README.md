@@ -57,7 +57,7 @@ document.getElementById("loginForm").onsubmit = function(e){
 
 Note that all the Lamport component are in namespace ```Lamport``` namespace.
 
-1. Override ```Lamport\DatabaseAdapter```:
+* Override ```Lamport\DatabaseAdapter```:
 
 ```php
 <?php
@@ -108,7 +108,7 @@ class DatabaseAdapterConcrete extends DatabaseAdapter{
 ?>
 ```
 
-2. ```include``` your concrete implementation of ```Lamport\DatabaseAdapter``` in
+* ```include``` your concrete implementation of ```Lamport\DatabaseAdapter``` in
 lamport.php. Note: Insert the include statement after ```namespace Lamport{```,
 otherwise, would result in an error.
 
@@ -121,7 +121,7 @@ include_once 'lamport-database-adapter-concrete.php';
 ?>
 ```
 
-3. Insert user data.
+* Insert user data.
 
 ## Todo:
 
