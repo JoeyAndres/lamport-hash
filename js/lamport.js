@@ -2,7 +2,7 @@
  * @param userName in clear-text(unencrypted).
  * @param password in clear-text(unencrypted).
  */
-function lamport(un, pw){
+function Lamport(un, pw){
     this.userName = un;
     this.password = pw;
 

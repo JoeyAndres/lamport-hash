@@ -18,6 +18,40 @@ will not help John impersonate Alice.
 
 ## Instructions:
 
+### Client Side:
+
+```
+<form id="loginForm" method="post">
+	Password: <input type="password" name="password" size="15" maxlength="30" id="passInput"/>
+	<input id="adminLoginButton" type="submit" value="Login">
+</form>
+	
+<!--Note that src is location of lamport.js, wherever it may be located.-->
+<script src="../js/lamport.js"></script>
+
+<script>
+var loginCallback = function(){
+	location.assign("index.php");
+}
+
+var reissueCallback = function(){
+	location.assign("reissue-password.php");  // Move to a page that allows password reissue.
+}
+	
+document.getElementById("loginForm").onsubmit = function(e){
+		e.preventDefault();  // This is critical, to avoid having multiple ajax request.
+
+		var passInput = document.getElementById("passInput").value;
+		var lt = new lamport("userName", passInput);
+		lt.verify(loginCallback, reissueCallback);
+}
+</script>
+```
+
+### Server Side:
+
+
+
 ## Todo:
 
 1. Make an adapter for hashing algorithm. Currently, only md5 is allowed.
