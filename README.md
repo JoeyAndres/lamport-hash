@@ -12,6 +12,9 @@ Alice and Bob, the data that John will gather will not help him impersonate
 Alice. And if John were to infiltrate the server Bob, the data in Bob
 will not help John impersonate Alice.
 
+_Note: This is an authentication system only, thus for user insertion to the
+server side, is not part of this code._
+
 ### Sequence Diagram
 
 ![alt text][seq-diag]
@@ -123,15 +126,11 @@ include_once 'lamport-database-adapter-concrete.php';
 ?>
 ```
 
-* Insert user data.
-
 ## Todo:
 
 1. Make an adapter for hashing algorithm. Currently, only md5 is allowed.
 2. Allow password change in any _n_. Currently, password change is allowed,
 only when _n = 1_.
-3. **Urgent:** Implement a way to insert a user data from client. Just
-realized that I currently mannually insert from Database Layer.
 
 
 [seq-diag]: https://github.com/JoeyAndres/lamport-hash/blob/master/lamport-hash-sequence-diagram.png "Lamport's Hash Sequence Diagram"
