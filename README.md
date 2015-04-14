@@ -88,7 +88,9 @@ class DatabaseAdapterConcrete extends DatabaseAdapter{
 			//
 			// In my implementation, I have a getUser method in my db, in which
 			// I acquire an array containing: userName, hash^{n} password,
-			// current n.
+			// current n. The point of Adapter is to aggregate implementation
+			// to an concrete adapter, eleminating possible interface difference
+			// with an outsider code, like this one.
             $userArr = $this->db->getUser($userName);
             return new User($userArr[0], $userArr[1], $userArr[2]);
         }
