@@ -55,7 +55,46 @@ document.getElementById("loginForm").onsubmit = function(e){
 
 ### Server Side:
 
+Note that all the Lamport component are in namespace ```Lamport``` namespace.
 
+1. Override ```Lamport\DatabaseAdapter```:
+
+```php
+<?php
+namespace Lamport{
+// lamport-database-adapter-concrete.php
+include_once 'lamport-database-adapter.php';  // Abstract database adapter.
+include_once 'Database.php';  // Database implementation in your server.
+
+class DatabaseAdapterConcrete extends DatabaseAdapter{
+	private $db = null;
+	
+	class DatabaseAdapterConcrete extends DatabaseAdapter{
+        private $db = null;
+
+        public function __construct(){
+            $this->db = \Database::instance();
+        }
+    
+        public function getUser($userName){
+            $userArr = $this->db->getUser($userName);
+            return new User($userArr[0], $userArr[1], $userArr[2]);
+        }
+
+        public function insertUser(User $user){
+            for($i = 0; $i < $n; $i++){
+                $password = md5($password);
+            }
+            $this->db->insertUser($user->userName, $user->password, $user->n);
+        }
+
+        public function updateUser(User $user){
+            $this->db->updateUser($user->userName, $user->password, $user->n);
+        }
+    }
+}
+?>
+```
 
 ## Todo:
 
