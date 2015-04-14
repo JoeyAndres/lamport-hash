@@ -73,14 +73,26 @@ class DatabaseAdapterConcrete extends DatabaseAdapter{
         private $db = null;
 
         public function __construct(){
-            $this->db = \Database::instance();
+			// Note that your server Database class is not in the Lamport
+			// namespace, thus do \Database, to refer to global scope,
+			// where Database is replaced with whatver db implementation
+			// you have.
+	        $this->db = \Database::instance();
         }
-    
+
         public function getUser($userName){
+			// Note that you might already have a User class, we are refering
+			// to the Lamport\User, or User class in Lamport namespace,
+			// thus if you have a User class, the code below is not refering to
+			// it.
+			//
+			// In my implementation, I have a getUser method in my db, in which
+			// I acquire an array containing: userName, hash^{n} password,
+			// current n.
             $userArr = $this->db->getUser($userName);
             return new User($userArr[0], $userArr[1], $userArr[2]);
         }
-
+		
         public function insertUser(User $user){
             for($i = 0; $i < $n; $i++){
                 $password = md5($password);
