@@ -3,6 +3,10 @@ namespace Lamport{
     //LamportState.php
     include_once 'lamport-database-adapter.php';
 
+    /*!@class LamportState
+     * @brief Abstract base class of all Lamport State. This follows the 
+     *        State Pattern.
+     */
     abstract class LamportState{
         protected $_user = null;
         protected $_dba = null;
@@ -54,10 +58,6 @@ namespace Lamport{
             $_SESSION['n'] = null;
         }
 
-        private function destroy($var){
-            if(isset($var)) $var = null;
-        }
-
         /**
          * Completely destroy current session. Called during
          * errors and failures.
@@ -88,6 +88,16 @@ namespace Lamport{
         }
     }
 
+    /*!@class LamportNM1
+     * @brief Represents the State when the client sent back the 
+     *        hash^{N-1}(password).
+     *
+     * Represents the State when the client sent back the hash^{N-1}(password).
+     * During the reply, this State class will hash the state pattern one more
+     * time, and compare with the hash^{n}(password) in server. If confirmed,
+     * the the User is updated, with the new hash^{n-1}(password) as the password
+     * and n<-n-1.
+     */
     class LamportNM1 extends LamportState{
         protected $_nm1Hash = null;
     
@@ -114,6 +124,10 @@ namespace Lamport{
         }
     }
 
+    /*!@class LamportReissueAuthentication
+     * @brief Represent the state when n=1, and client is requesting to renew 
+     *        the password.
+     */
     class LamportReissueAuthentication extends LamportState{
         private $_password = null;  // Reissued password to be authenticated.
 
@@ -137,6 +151,10 @@ namespace Lamport{
         }
     }
 
+    /*!@class LamportReissueFinalize
+     * @brief Represent the state when LamportReissueAuthentication succeed and
+     *        the user proceed with editing the password and new n.
+     */
     class LamportReissueFinalize extends LamportState{
         private $_newPass = null;
         private $_newN = null;

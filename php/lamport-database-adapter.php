@@ -21,8 +21,23 @@ namespace Lamport{
      * @brief Database Adapter to be used by Lamport.php
      */
     abstract class DatabaseAdapter{
+        /**
+         * @param $userName the user to be retrieved.
+         * @return a User class, the data required by Lamport hash.
+         * @see User.
+         * @throws Exception when no user exist.
+         */
         abstract public function getUser($userName);
+
+        /**
+         * @param $user User instance to be inserted in server.
+         */
         abstract public function insertUser(User $user);
+
+        /**
+         * @param $user User instance that will update the corresponding
+         *              user in server.
+         */
         abstract public function updateUser(User $user);
     }
 }
