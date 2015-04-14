@@ -20,12 +20,15 @@ will not help John impersonate Alice.
 
 ### Client Side:
 
-```
+```html
 <form id="loginForm" method="post">
-	Password: <input type="password" name="password" size="15" maxlength="30" id="passInput"/>
+	Password: <input type="password" name="password" size="15" maxlength="30"
+		id="passInput"/>
 	<input id="adminLoginButton" type="submit" value="Login">
 </form>
-	
+```
+
+```javascript
 <!--Note that src is location of lamport.js, wherever it may be located.-->
 <script src="../js/lamport.js"></script>
 
@@ -35,15 +38,17 @@ var loginCallback = function(){
 }
 
 var reissueCallback = function(){
-	location.assign("reissue-password.php");  // Move to a page that allows password reissue.
+	// Move to a page that allows password reissue.
+	location.assign("reissue-password.php");
 }
 	
 document.getElementById("loginForm").onsubmit = function(e){
-		e.preventDefault();  // This is critical, to avoid having multiple ajax request.
+	// This is critical, to avoid having multiple ajax request.
+	e.preventDefault();
 
-		var passInput = document.getElementById("passInput").value;
-		var lt = new lamport("userName", passInput);
-		lt.verify(loginCallback, reissueCallback);
+	var passInput = document.getElementById("passInput").value;
+	var lt = new Lamport("userName", passInput);
+	lt.verify(loginCallback, reissueCallback);
 }
 </script>
 ```
