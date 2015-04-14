@@ -25,4 +25,4 @@ will not help John impersonate Alice.
    only when _n = 1_.
 
 
-[seq-diag]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
+[seq-diag]: https://github.com/JoeyAndres/lamport-hash/blob/master/lamport-hash-sequence-diagram.png "Lamport's Hash Sequence Diagram"
