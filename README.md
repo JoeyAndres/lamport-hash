@@ -108,11 +108,28 @@ class DatabaseAdapterConcrete extends DatabaseAdapter{
 ?>
 ```
 
+2. ```include``` your concrete implementation of ```Lamport\DatabaseAdapter``` in
+lamport.php. Note: Insert the include statement after ```namespace Lamport{```,
+otherwise, would result in an error.
+
+```php
+<?php
+namespace Lamport{
+include_once 'lamport-database-adapter-concrete.php';
+
+// Rest of code.
+?>
+```
+
+3. Insert user data.
+
 ## Todo:
 
 1. Make an adapter for hashing algorithm. Currently, only md5 is allowed.
 2. Allow password change in any _n_. Currently, password change is allowed,
-   only when _n = 1_.
+only when _n = 1_.
+3. **Urgent:** Implement a way to insert a user data from client. Just
+realized that I currently mannually insert from Database Layer.
 
 
 [seq-diag]: https://github.com/JoeyAndres/lamport-hash/blob/master/lamport-hash-sequence-diagram.png "Lamport's Hash Sequence Diagram"

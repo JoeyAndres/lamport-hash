@@ -1,6 +1,6 @@
 <?php
 namespace Lamport{
-    // database-adapter-concrete.php
+    // lamport-database-adapter-concrete.php
     include_once 'lamport-database-adapter.php';
     include_once 'Database.php';  // Sammple Database that is already implemented.
 
