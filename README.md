@@ -12,8 +12,7 @@ Alice and Bob, the data that John will gather will not help him impersonate
 Alice. And if John were to infiltrate the server Bob, the data in Bob
 will not help John impersonate Alice.
 
-_Note: This is an authentication system only, thus for user insertion to the
-server side, is not part of this code._
+_Note: This is till not ready. I need to accomodate user insert._
 
 ### Sequence Diagram
 
